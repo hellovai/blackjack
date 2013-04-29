@@ -75,7 +75,7 @@ void Agent::DumpPolicy(string name) {
   myfile<<"Usable Ace"<<endl;
   for(int i=0; i < 10; i ++)
   for(int j=0; j < 10; j ++)
-  	myfile<<i+12<<" "<<j+1<<" "<<(qval[i][j][1][0] > qval[i][j][1][1] ? qval[i][j][1][0] :  qval[i][j][1][1])<<endl;
+  	myfile<<i<<" "<<j<<" "<<(qval[i][j][1][0] > qval[i][j][1][1] ? qval[i][j][1][0] :  qval[i][j][1][1])<<endl;
   myfile.close();
   file = name;
   file.append("-no-usable.dat");
@@ -83,6 +83,6 @@ void Agent::DumpPolicy(string name) {
   myfile<<"No Usable Ace"<<endl;
   for(int i=0; i < 10; i ++)
   for(int j=0; j < 10; j ++)
-  	myfile<<i+12<<" "<<j+1<<" "<<(qval[i][j][0][0] > qval[i][j][0][1] ? qval[i][j][0][0] :  qval[i][j][0][1])<<endl;
+  	myfile<<i<<" "<<j<<" "<<(qval[i][j][0][0] > qval[i][j][0][1] ? qval[i][j][0][0] :  qval[i][j][0][1])<<endl;
   myfile.close();
 }
