@@ -67,6 +67,13 @@ void Agent::Update() {
 void Agent::DumpPolicy(string file) {
   ofstream myfile;
   myfile.open (file.c_str());
-  myfile << "Writing this to a file.\n";
+  myfile<<"Usable Ace"<<endl;
+  for(int i=0; i < 10; i ++)
+  for(int j=0; j < 10; j ++)
+  	myfile<<i+12<<" "<<j+1<<" "<<(qval[i][j][1][0] > qval[i][j][1][1] ? STAY : HIT)<<endl;
+  myfile<<"No Usable Ace"<<endl;
+  for(int i=0; i < 10; i ++)
+  for(int j=0; j < 10; j ++)
+  	myfile<<i+12<<" "<<j+1<<" "<<(qval[i][j][0][0] > qval[i][j][0][1] ? STAY : HIT)<<endl;
   myfile.close();
 }
