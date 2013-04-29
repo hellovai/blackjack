@@ -19,7 +19,7 @@ class Agent {
 	bool debug;
 	double qval[10][10][2][2]; // player sum, dealer showing, usable ace, HIT / STAY
 	int visit[10][10][2][2]; // player sum, dealer showing, usable ace, HIT / STAY
-
+	bool policy[10][10][2];
 	public:
 		Agent( Game*);
 		void setDebug( bool x ) { debug = x; };

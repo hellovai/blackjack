@@ -118,6 +118,6 @@ void Game::CheckBust() {
 	if(player_sum > 21 ) {
 		if(debug) cout<<"Bust!"<<endl;
 		my_status = false;
-		moveList.push_back(stateaction(player_sum, usable_ace, BUST));
+		//moveList.push_back(stateaction(player_sum, usable_ace, BUST));
 	}
 }

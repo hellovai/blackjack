@@ -15,6 +15,11 @@
 # Compiled Game
 blackjack
 a.out
+
 # temporary files
 *~
 *#
+
+# results
+*.dat
+results/*

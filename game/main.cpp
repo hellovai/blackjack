@@ -17,7 +17,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {	
 	srand ( time(NULL) );
-	
+
 	int gameCounter = 1;
 	bool debug = false;
 	string dumpfile = "data";
@@ -39,27 +39,25 @@ int main(int argc, char* argv[]) {
 		} else
 			usage_err(temp);
 	}
-	cout<<"Dump file: "<<dumpfile<<endl;
 	Game *game = new Game();
-	game->setDebug(false);
+	game->setDebug(debug);
 	Agent *agent = new Agent(game);
 	agent->setDebug(debug);
 
 	for(int i=0; i<gameCounter; i++) {
-		cout<<"Running Trial: "<<i<<endl;
+		if(debug) cout<<"Running Trial: "<<i<<endl;
 		game->Reset();
-		game->Eval();
+		if(debug) game->Eval();
 		while(game->Status()) {
 			//game->Eval();
 			Action move = agent->Move();
-			cout<<"\tTaking Action: "<<move<<endl;
+			if(debug) cout<<"\tTaking Action: "<<move<<endl;
 			game->Move(move);
 		}
 		game->Dealer();
-		game->Eval();
+		if(debug) game->Eval();
 		agent->Update();
 	}
-	cout<<dumpfile<<endl;
 	agent->DumpPolicy(dumpfile);
 	return 0;
 }
