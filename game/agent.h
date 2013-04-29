@@ -25,6 +25,7 @@ class Agent {
 		void setDebug( bool x ) { debug = x; };
 		Action Move();
 		void Update();
+		void DumpPolicy(string file);
 };
 
 //=================================

@@ -63,3 +63,10 @@ void Agent::Update() {
 	} 
 	//cout<<"Done Updating"<<endl;
 }
+
+void Agent::DumpPolicy(string file) {
+  ofstream myfile;
+  myfile.open (file.c_str());
+  myfile << "Writing this to a file.\n";
+  myfile.close();
+}
