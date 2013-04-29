@@ -22,6 +22,10 @@ Agent::Agent( Game* gmptr) {
 	for(int l = 0; l < 2; l++) {
 		qval[i][j][j][l] = 0.0;
 		visit[i][j][j][l] = 0;
+		if(i > 7) {
+			qval[i][j][j][0] = 1;
+			qval[i][j][j][1] = -1;
+		}
 	}
 }
 
@@ -50,9 +54,8 @@ void Agent::Update() {
 				cout<<sa[i].sum<<" "<<dealer<<" "<<(sa[i].ace ? "Useable Ace" : "No Useable Ace")<<endl;
 				cout<<"\tQVal: "<<q<<" Visits: "<<v<<endl;
 			}
-			q = q * ((double) v) + result;
 			v++;
-			q /= (double) v;
+			q += (double) result/((double) v);
 			qval[sa[i].sum-12][dealer][ace][sa[i].action] = q;
 			visit[sa[i].sum-12][dealer][ace][sa[i].action] = v;
 			if(debug)
@@ -64,16 +67,22 @@ void Agent::Update() {
 	//cout<<"Done Updating"<<endl;
 }
 
-void Agent::DumpPolicy(string file) {
+void Agent::DumpPolicy(string name) {
+  string file = name;
+  file.append("-usable.dat");
   ofstream myfile;
   myfile.open (file.c_str());
   myfile<<"Usable Ace"<<endl;
   for(int i=0; i < 10; i ++)
   for(int j=0; j < 10; j ++)
-  	myfile<<i+12<<" "<<j+1<<" "<<(qval[i][j][1][0] > qval[i][j][1][1] ? STAY : HIT)<<endl;
+  	myfile<<i+12<<" "<<j+1<<" "<<(qval[i][j][1][0] > qval[i][j][1][1] ? qval[i][j][1][0] :  qval[i][j][1][1])<<endl;
+  myfile.close();
+  file = name;
+  file.append("-no-usable.dat");
+  myfile.open(file.c_str());
   myfile<<"No Usable Ace"<<endl;
   for(int i=0; i < 10; i ++)
   for(int j=0; j < 10; j ++)
-  	myfile<<i+12<<" "<<j+1<<" "<<(qval[i][j][0][0] > qval[i][j][0][1] ? STAY : HIT)<<endl;
+  	myfile<<i+12<<" "<<j+1<<" "<<(qval[i][j][0][0] > qval[i][j][0][1] ? qval[i][j][0][0] :  qval[i][j][0][1])<<endl;
   myfile.close();
 }

@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 	
 	int gameCounter = 1;
 	bool debug = false;
-	string dumpfile = "data.dat";
+	string dumpfile = "data";
 	//read arguments and define variable based on them
 	for(int i=1; i<argc; i++) {
 		string temp = argv[i];
@@ -33,13 +33,13 @@ int main(int argc, char* argv[]) {
 				usage_err(temp);
 		} else if (temp.compare("-dump") == 0) {
 			if(++i<argc)
-				dumpfile = atoi(argv[i]);
+				dumpfile = argv[i];
 			else
 				usage_err(temp);
 		} else
 			usage_err(temp);
 	}
-	
+	cout<<"Dump file: "<<dumpfile<<endl;
 	Game *game = new Game();
 	game->setDebug(false);
 	Agent *agent = new Agent(game);
@@ -59,6 +59,7 @@ int main(int argc, char* argv[]) {
 		game->Eval();
 		agent->Update();
 	}
+	cout<<dumpfile<<endl;
 	agent->DumpPolicy(dumpfile);
 	return 0;
 }
