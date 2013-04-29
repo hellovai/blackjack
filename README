@@ -1,0 +1,3 @@
+This is a simple agent that analyzes the states of blackjack in the case of player vs dealer. The goal is to replicate the results that were proposed by sutton and barto in book Reinforcement Learning Example 5.3.
+
+We will be using Montecarlo off policy methods with 0 discounting.
