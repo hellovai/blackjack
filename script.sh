@@ -1,8 +1,20 @@
 #!/bin/bash
 
+EXPECTED_ARGS=2
+E_BADARGS=65
+
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: `basename $0` {output file start} {number of games to play}"
+  exit $E_BADARGS
+fi
+
+
 output=$1
 games=$2
-
+cd game
+make
+cd ../
 ./blackjack -g $games -dump $output
 
 array=(no-usable usable)
