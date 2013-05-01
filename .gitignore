@@ -24,3 +24,5 @@ a.out
 *.dat
 results/*
 *.datpol
+*.odt
+analysis.*
