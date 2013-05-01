@@ -24,6 +24,8 @@ do
 		set nokey
 		set title '$output $item ace, Probability' 
 		splot '$name' using 2:1:3 with lines pal" | gnuplot
+		convert ./results/graphs/$name.ps -rotate 90 ./results/graphs/$name.png
+		rm ./results/graphs/$name.ps
 	done
 done
 
@@ -48,6 +50,8 @@ do
 		set nokey
 		set title '$output $item ace, Policy' 
 		splot '$name' using 2:1:3 with points pal" | gnuplot
+		convert ./results/graphs/$name.ps -rotate 90 ./results/graphs/$name.png
+		rm ./results/graphs/$name.ps
 	done
 done
 
